@@ -1,0 +1,26 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  & button {
+    background-color: teal;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  & button:hover {
+    background-color: rgb(1, 88, 88);
+  }
+}
+.icon {
+  color: teal;
+}
+.input {
+  display: flex;
+  gap: 5px;
+}
+.name {
+  font-weight: 600;
+}
