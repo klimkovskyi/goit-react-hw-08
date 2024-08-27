@@ -13,8 +13,11 @@ const slice = createSlice({
     filterContacts: (state, action) => {
       state.filter.name = action.payload;
     },
+    filterNumberContacts: (state, action) => {
+      state.filter.number = action.payload;
+    },
   },
 });
 
 export const filterReducer = slice.reducer;
-export const { filterContacts } = slice.actions;
+export const { filterContacts, filterNumberContacts } = slice.actions;

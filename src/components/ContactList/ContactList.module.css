@@ -15,8 +15,13 @@
 }
 
 .item {
-  padding: 5px;
-  border: 1px solid black;
-  box-shadow: 0px 0px 3px 3px grey;
-  width: 250px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  background-color: rgb(81, 136, 136);
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }

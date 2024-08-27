@@ -3,7 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContactThunk } from "../../redux/contactsOps";
+import { addContactThunk } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,14 @@ const ContactForm = () => {
   };
 
   const handleAddContact = (data, actions) => {
-    dispatch(addContactThunk({ name: data.name, number: data.number }));
+    dispatch(addContactThunk({ name: data.name, number: data.number }))
+      .then(() => {
+        toast.success("Contact added successfully!");
+        actions.resetForm();
+      })
+      .catch(() => {
+        toast.error("Failed to add contact. Please try again.");
+      });
     actions.resetForm();
   };
 
@@ -28,6 +36,7 @@ const ContactForm = () => {
   });
   return (
     <div className={s.wrapper}>
+      <Toaster position="top-right" />
       <Formik
         initialValues={initialValues}
         onSubmit={handleAddContact}

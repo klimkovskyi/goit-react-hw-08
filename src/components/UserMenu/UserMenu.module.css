@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  align-items: baseline;
+  max-width: 100%;
+  justify-content: center;
+}
+
+.username {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.623);
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.966);
+  font-weight: bold;
+  margin-right: 20px;
+  font-size: 18px;
+}
+
+.button {
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white;
+  padding: 10px 12px;
+  border: none;
+  transition: color 0.3s ease-in-out;
+  &:hover {
+    color: rgb(0, 88, 88);
+  }
+}

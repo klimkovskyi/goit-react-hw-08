@@ -7,8 +7,31 @@
 .label {
   display: flex;
   flex-direction: column;
+  color: teal;
+  font-weight: 600;
+  gap: 10px;
+  align-items: center;
+  & input {
+    min-width: 250px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background-color: #00000009;
+    border: 2px solid goldenrod;
+    color: gold;
+    transition: border-color 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
-  & span {
-    font-weight: 600;
+    &::placeholder {
+      color: rgb(66, 66, 66);
+    }
+    &:focus {
+      outline: none;
+      border: 2px solid gold;
+      box-shadow: 0px 0px 10px 0px gold;
+    }
+    &:hover {
+      border: 2px solid gold;
+      box-shadow: 0px 0px 10px 0px gold;
+    }
   }
 }

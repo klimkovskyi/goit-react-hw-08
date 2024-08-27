@@ -1,28 +1,59 @@
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage/HomePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import { useDispatch, useSelector } from "react-redux";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import SearchBox from "./components/SearchBox/SearchBox";
-import { useEffect, useState } from "react";
-import { fetchContactsThunk } from "./redux/contactsOps";
-import { selectError, selectIsLoading } from "./redux/selectors";
+import { useEffect } from "react";
+import { getMeThunk } from "./redux/auth/operations";
+import { PrivateRoute } from "./components/Routes/PrivateRoute";
+import { PublicRoute } from "./components/Routes/PublicRoute";
+import { selectIsRefereshing } from "./redux/auth/selectors";
+import Loader from "./components/Loader/Loader";
 
 function App() {
-  const dispach = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
+  const isRefreshing = useSelector(selectIsRefereshing);
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispach(fetchContactsThunk());
-  }, [dispach]);
-  return (
+    dispatch(getMeThunk());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <Loader />
+  ) : (
     <>
       <div>
-        <h1 style={{ textAlign: "center", color: "teal" }}>Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-        {isLoading && !error && <b>Request in progress...</b>}
-        {error && <b>Error: {error}</b>}
-        <ContactList />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute>
+                  <ContactsPage />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Layout>
       </div>
     </>
   );

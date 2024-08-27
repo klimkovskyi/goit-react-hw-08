@@ -1,6 +1,6 @@
+import { filterContacts } from "../../redux/filters/slice";
 import s from "./SearchBox.module.css";
 import { useDispatch } from "react-redux";
-import { filterContacts } from "../../redux/filtersSlice";
 
 const SearchBox = () => {
   const dispatch = useDispatch();

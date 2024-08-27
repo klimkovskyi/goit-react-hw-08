@@ -1,26 +1,41 @@
 .wrapper {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 10px;
+  gap: 5px;
+
   & button {
-    background-color: teal;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  & button:hover {
-    background-color: rgb(1, 88, 88);
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100px;
+    padding: 8px 20px;
+    background-color: transparent;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    color: whitesmoke;
+    transition: border-color 0.3s ease, color 0.3s ease,
+      background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      color: gold;
+      box-shadow: 0px 0px 10px 0px gold;
+      background-color: rgba(24, 0, 56, 0.932);
+      border: 2px solid gold;
+    }
   }
 }
 .icon {
-  color: teal;
+  color: rgba(0, 0, 0, 0.479);
 }
 .input {
   display: flex;
-  gap: 5px;
+  gap: 10px;
 }
 .name {
+  color: lightgray;
   font-weight: 600;
 }
