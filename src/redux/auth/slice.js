@@ -33,8 +33,15 @@ const slice = createSlice({
       })
       .addCase(getMeThunk.fulfilled, (state, action) => {
         state.isLoggedIn = true;
+        state.isRefreshing = false;
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
+      })
+      .addCase(getMeThunk.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(getMeThunk.rejected, state => {
+        state.isRefreshing = false;
       })
       .addCase(logoutThunk.fulfilled, () => initialState);
   },
